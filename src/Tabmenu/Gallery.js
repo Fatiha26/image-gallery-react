@@ -24,10 +24,10 @@ const Gallery = () => {
             <button className="btn btn-warning" onClick={()=> setItem(Menu)}>All</button>
         </div>
       </div>
-      <div className='menu-item container-fluid mt-5'>
+      <div className='menu-item container-fluid'>
           <div className="row">
             <div className="col-11 mx-auto">
-              <div className="row my-5">
+              <div className="row my-2 menu-inner">
 
                 {
                   item.map((elem)=>{
@@ -35,7 +35,7 @@ const Gallery = () => {
 
                     return(
                       <>
-                      <div className="item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5">
+                <div className="item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5">
                  <div className="row item-inside">
                   <div className="col-12 col-md-12 col-lg-4 img-div">
                     <img src={image} alt="menuPic" className="img-fluid" />
@@ -47,12 +47,12 @@ const Gallery = () => {
                     </div>
                     <div className="menu-price-book">
                       <div className="price-book-divide">
-                        <h2>{price}</h2>
+                        <h4>{price}</h4>
                         <a href="#">
                           <button className='btn btn-primary'>Order now</button>
                         </a>
                       </div>
-                      <p>{description}</p>
+                      <p className='mt-1'>{description}</p>
                     </div>
                   </div>
                  </div>
