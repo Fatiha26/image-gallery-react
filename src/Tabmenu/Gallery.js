@@ -1,45 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Menu from './Menu';
+
+
 const Gallery = () => {
+  const [item,setItem] = useState(Menu);
+
+  const filterItem = (cateitem) => {
+          const updatedItems = Menu.filter((curElem)=>{
+            return curElem.category === cateitem;
+          });
+          setItem(updatedItems);
+  }
   return (
     <div>
       <h1 className="mt-5 text-center main-heading">Order your food</h1>
       <hr />
       <div className='menu-tabs container'>
         <div className="menu-tab d-flex justify-content-around">
-            <button className="btn btn-warning">Breakfast</button>
-            <button className="btn btn-warning">Lunch</button>
-            <button className="btn btn-warning">Evening</button>
-            <button className="btn btn-warning">Dinner</button>
-            <button className="btn btn-warning">All</button>
+            <button className="btn btn-warning" onClick={()=> filterItem('breakfast')}>Breakfast</button>
+            <button className="btn btn-warning" onClick={()=> filterItem('lunch')}>Lunch</button>
+            <button className="btn btn-warning" onClick={()=> filterItem('evening')}>Evening</button>
+            <button className="btn btn-warning" onClick={()=> filterItem('dinner')}>Dinner</button>
+            <button className="btn btn-warning" onClick={()=> setItem(Menu)}>All</button>
         </div>
       </div>
       <div className='menu-item container-fluid mt-5'>
           <div className="row">
             <div className="col-11 mx-auto">
               <div className="row my-5">
-              <div className="item col-12 col-md-6 col-lg-6 col-xl-4">
+
+                {
+                  item.map((elem)=>{
+                    const {id,image,name,category,price,description} = elem;
+
+                    return(
+                      <>
+                      <div className="item1 col-12 col-md-6 col-lg-6 col-xl-4 my-5">
                  <div className="row item-inside">
                   <div className="col-12 col-md-12 col-lg-4 img-div">
-                    <img src="" alt="menuPic" className="img-fluid" />
+                    <img src={image} alt="menuPic" className="img-fluid" />
                   </div>
                   <div className="col-12 col-md-12 col-lg-8">
                     <div className="main-title pt-4 pb-3">
-                      <h1>Maggi</h1>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                      <h1>{name}</h1>
+                      <p>{category}</p>
                     </div>
                     <div className="menu-price-book">
                       <div className="price-book-divide">
-                        <h2>Price : TK120</h2>
+                        <h2>{price}</h2>
                         <a href="#">
                           <button className='btn btn-primary'>Order now</button>
                         </a>
                       </div>
-                      <p>*Price may vary on selected date</p>
+                      <p>{description}</p>
                     </div>
                   </div>
                  </div>
 
               </div>
+                      </>
+                    )
+                  })
+                }
+          
 
               </div>
             </div>
